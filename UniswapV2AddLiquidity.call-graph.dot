@@ -1,0 +1,24 @@
+strict digraph {
+subgraph cluster_1164_UniswapV2AddLiquidity {
+label = "UniswapV2AddLiquidity"
+"1164_slitherConstructorConstantVariables" [label="slitherConstructorConstantVariables"]
+"1164_safeTransferFrom" [label="safeTransferFrom"]
+"1164_removeLiquidity" [label="removeLiquidity"]
+"1164_safeApprove" [label="safeApprove"]
+"1164_addLiquidity" [label="addLiquidity"]
+"1164_addLiquidity" -> "1164_safeApprove"
+"1164_addLiquidity" -> "1164_safeTransferFrom"
+"1164_removeLiquidity" -> "1164_safeApprove"
+}subgraph cluster_solidity {
+label = "[Solidity]"
+"abi.decode()" 
+"abi.encodeCall()" 
+"require(bool,string)" 
+"1164_safeApprove" -> "require(bool,string)"
+"1164_safeApprove" -> "abi.encodeCall()"
+"1164_safeTransferFrom" -> "abi.encodeCall()"
+"1164_safeTransferFrom" -> "abi.decode()"
+"1164_safeTransferFrom" -> "require(bool,string)"
+"1164_safeApprove" -> "abi.decode()"
+}
+}

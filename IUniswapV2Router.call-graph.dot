@@ -1,0 +1,9 @@
+strict digraph {
+subgraph cluster_1211_IUniswapV2Router {
+label = "IUniswapV2Router"
+"1211_removeLiquidity" [label="removeLiquidity"]
+"1211_addLiquidity" [label="addLiquidity"]
+}subgraph cluster_solidity {
+label = "[Solidity]"
+}
+}

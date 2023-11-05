@@ -1,0 +1,33 @@
+strict digraph {
+subgraph cluster_551_SafeERC20 {
+label = "SafeERC20"
+"551__callOptionalReturnBool" [label="_callOptionalReturnBool"]
+"551_safeIncreaseAllowance" [label="safeIncreaseAllowance"]
+"551_safeDecreaseAllowance" [label="safeDecreaseAllowance"]
+"551_forceApprove" [label="forceApprove"]
+"551__callOptionalReturn" [label="_callOptionalReturn"]
+"551_safeTransferFrom" [label="safeTransferFrom"]
+"551_safeTransfer" [label="safeTransfer"]
+"551_safeDecreaseAllowance" -> "551_forceApprove"
+"551_safeTransfer" -> "551__callOptionalReturn"
+"551_forceApprove" -> "551__callOptionalReturnBool"
+"551_safeIncreaseAllowance" -> "551_forceApprove"
+"551_safeTransferFrom" -> "551__callOptionalReturn"
+"551_forceApprove" -> "551__callOptionalReturn"
+}subgraph cluster_solidity {
+label = "[Solidity]"
+"code(address)" 
+"abi.encodeCall()" 
+"revert SafeERC20FailedOperation(address)" 
+"abi.decode()" 
+"revert SafeERC20FailedDecreaseAllowance(address,uint256,uint256)" 
+"551_forceApprove" -> "abi.encodeCall()"
+"551__callOptionalReturn" -> "revert SafeERC20FailedOperation(address)"
+"551_safeDecreaseAllowance" -> "revert SafeERC20FailedDecreaseAllowance(address,uint256,uint256)"
+"551__callOptionalReturnBool" -> "abi.decode()"
+"551__callOptionalReturn" -> "abi.decode()"
+"551__callOptionalReturnBool" -> "code(address)"
+"551_safeTransferFrom" -> "abi.encodeCall()"
+"551_safeTransfer" -> "abi.encodeCall()"
+}
+}

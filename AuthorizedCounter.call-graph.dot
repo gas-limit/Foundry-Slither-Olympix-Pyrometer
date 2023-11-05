@@ -1,0 +1,38 @@
+strict digraph {
+subgraph cluster_826_Context {
+label = "Context"
+"826__msgSender" [label="_msgSender"]
+"826__msgData" [label="_msgData"]
+}subgraph cluster_147_Ownable {
+label = "Ownable"
+"147__transferOwnership" [label="_transferOwnership"]
+"147_constructor" [label="constructor"]
+"147_renounceOwnership" [label="renounceOwnership"]
+"147_transferOwnership" [label="transferOwnership"]
+"147_owner" [label="owner"]
+"147__checkOwner" [label="_checkOwner"]
+"147_renounceOwnership" -> "147__transferOwnership"
+"147_transferOwnership" -> "147_onlyOwner"
+"147__checkOwner" -> "147_owner"
+"147_renounceOwnership" -> "147_onlyOwner"
+"147_transferOwnership" -> "147__transferOwnership"
+"147_constructor" -> "147__transferOwnership"
+"147__checkOwner" -> "147__msgSender"
+}subgraph cluster_886_AuthorizedCounter {
+label = "AuthorizedCounter"
+"886_increment" [label="increment"]
+"886_constructor" [label="constructor"]
+"886_getCount" [label="getCount"]
+"886_decrement" [label="decrement"]
+"886_constructor" -> "886_constructor"
+"886_increment" -> "886_onlyOwner"
+"886_decrement" -> "886_onlyOwner"
+}subgraph cluster_solidity {
+label = "[Solidity]"
+"revert OwnableInvalidOwner(address)" 
+"revert OwnableUnauthorizedAccount(address)" 
+"147_transferOwnership" -> "revert OwnableInvalidOwner(address)"
+"147_constructor" -> "revert OwnableInvalidOwner(address)"
+"147__checkOwner" -> "revert OwnableUnauthorizedAccount(address)"
+}
+}

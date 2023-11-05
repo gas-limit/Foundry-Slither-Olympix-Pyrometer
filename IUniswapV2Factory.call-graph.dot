@@ -1,0 +1,8 @@
+strict digraph {
+subgraph cluster_1221_IUniswapV2Factory {
+label = "IUniswapV2Factory"
+"1221_getPair" [label="getPair"]
+}subgraph cluster_solidity {
+label = "[Solidity]"
+}
+}

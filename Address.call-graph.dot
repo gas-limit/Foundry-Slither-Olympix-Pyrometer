@@ -1,0 +1,38 @@
+strict digraph {
+subgraph cluster_804_Address {
+label = "Address"
+"804_verifyCallResult" [label="verifyCallResult"]
+"804_verifyCallResultFromTarget" [label="verifyCallResultFromTarget"]
+"804__revert" [label="_revert"]
+"804_sendValue" [label="sendValue"]
+"804_functionCallWithValue" [label="functionCallWithValue"]
+"804_functionDelegateCall" [label="functionDelegateCall"]
+"804_functionStaticCall" [label="functionStaticCall"]
+"804_functionCall" [label="functionCall"]
+"804_verifyCallResult" -> "804__revert"
+"804_functionCall" -> "804_functionCallWithValue"
+"804_functionDelegateCall" -> "804_verifyCallResultFromTarget"
+"804_verifyCallResultFromTarget" -> "804__revert"
+"804_functionCallWithValue" -> "804_verifyCallResultFromTarget"
+"804_functionStaticCall" -> "804_verifyCallResultFromTarget"
+}subgraph cluster_solidity {
+label = "[Solidity]"
+"mload(uint256)" 
+"code(address)" 
+"revert AddressEmptyCode(address)" 
+"revert FailedInnerCall()" 
+"revert(uint256,uint256)" 
+"revert AddressInsufficientBalance(address)" 
+"balance(address)" 
+"804_verifyCallResultFromTarget" -> "revert AddressEmptyCode(address)"
+"804_functionCallWithValue" -> "revert AddressInsufficientBalance(address)"
+"804__revert" -> "mload(uint256)"
+"804_sendValue" -> "revert AddressInsufficientBalance(address)"
+"804__revert" -> "revert(uint256,uint256)"
+"804_sendValue" -> "revert FailedInnerCall()"
+"804_sendValue" -> "balance(address)"
+"804_verifyCallResultFromTarget" -> "code(address)"
+"804__revert" -> "revert FailedInnerCall()"
+"804_functionCallWithValue" -> "balance(address)"
+}
+}
